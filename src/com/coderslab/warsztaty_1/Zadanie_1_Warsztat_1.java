@@ -1,3 +1,5 @@
+package com.coderslab.warsztaty_1;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -10,7 +12,7 @@ public class Zadanie_1_Warsztat_1 {
     }
 
 
-    public static int sprawdzanie(int choosenNumber) {
+    public static void sprawdzanie(int choosenNumber) {
         Scanner scanner = new Scanner(System.in);
         boolean wynik = false;
         System.out.println("Zgadnij liczbę");
@@ -35,8 +37,8 @@ public class Zadanie_1_Warsztat_1 {
                 System.out.println("Za mało!");
             }
         }
+        scanner.close();
         System.out.println("Gratulacje, zgadłeś!");
-        return 1;
     }
 
 }

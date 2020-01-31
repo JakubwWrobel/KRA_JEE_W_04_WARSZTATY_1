@@ -1,3 +1,5 @@
+package com.coderslab.warsztaty_1;
+
 import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -30,35 +32,39 @@ public class Zadanie_4_Warsztat_1 {
                 if (count == 1) {
                     int typeOfCube = Integer.parseInt(userInput.substring(userInput.indexOf("D") + 1, userInput.indexOf("+")));
                     String additionalNumber = userInput.substring(userInput.indexOf("+") + 1);
-                    cubeThrows(typeOfCube, additionalNumber, numberOfThrows);
+                    cubeThrowsMoreThan1(typeOfCube, additionalNumber, numberOfThrows);
+                    cubeThrowsLessThanOne(typeOfCube, additionalNumber, numberOfThrows);
 
                 } else if (count == 2) {
                     int typeOfCube = Integer.parseInt(userInput.substring(userInput.indexOf("D") + 1, userInput.indexOf("-")));
                     String additionalNumber = '-' + userInput.substring(userInput.indexOf("-") + 1);
-                    cubeThrows(typeOfCube, additionalNumber, numberOfThrows);
+                    cubeThrowsMoreThan1(typeOfCube, additionalNumber, numberOfThrows);
+                    cubeThrowsLessThanOne(typeOfCube, additionalNumber, numberOfThrows);
 
                 } else {
                     int typeOfCube = Integer.parseInt(userInput.substring(userInput.indexOf("D") + 1));
                     String additionalNumber = "0";
-                    cubeThrows(typeOfCube, additionalNumber, numberOfThrows);
+                    cubeThrowsMoreThan1(typeOfCube, additionalNumber, numberOfThrows);
+                    cubeThrowsLessThanOne(typeOfCube, additionalNumber, numberOfThrows);
                 }
                 checkingRun = true;
-            } catch (NumberFormatException e){
+                scanner.close();
+            } catch (NumberFormatException e) {
                 System.out.println("Niepoprawny format pliku: xDy+z");
 
-            } catch (StringIndexOutOfBoundsException e){
+            } catch (StringIndexOutOfBoundsException e) {
                 System.out.println("Niepoprawny format pliku: xDy+z");
             }
         }
+
     }
 
-    public static void cubeThrows(int typeOfCube, String additionalNumber, String numberOfThrows) {
+    public static void cubeThrowsMoreThan1(int typeOfCube, String additionalNumber, String numberOfThrows) {
         Random random = new Random();
         int result;
         int additionalNumberSumInteger = Integer.parseInt(additionalNumber);
-        System.out.println(additionalNumberSumInteger);
 
-        if (Integer.parseInt(numberOfThrows) > 1) {
+        if (Integer.parseInt(numberOfThrows) >= 1) {
             int liczbaRzutow = Integer.parseInt(numberOfThrows);
             int ileRzut = 1;
             if (additionalNumberSumInteger > 0) {
@@ -88,41 +94,49 @@ public class Zadanie_4_Warsztat_1 {
                 System.out.println("Suma wylosowanych liczb to: " + result);
 
             }
+        }
+    }
 
-        } else {
-            int liczbaRzutow = Integer.parseInt(numberOfThrows);
-            int ileRzut = 1;
+    public static void cubeThrowsLessThanOne(int typeOfCube, String additionalNumber, String numberOfThrows) {
+        Random random = new Random();
+        int result;
+        int additionalNumberSumInteger = Integer.parseInt(additionalNumber);
 
-            if (additionalNumberSumInteger >= 0) {
-                System.out.println("Rzuciłem kostką: " + numberOfThrows + " razy.");
-                int[] tableOfThrows = new int[liczbaRzutow];
-                for (int i = 0; i < tableOfThrows.length; i++) {
-                    tableOfThrows[i] = ThreadLocalRandom.current().nextInt(1, typeOfCube);
-                    ;
-                    System.out.println("Rzut nr: " + ileRzut + ": " + tableOfThrows[i]);
-                    ileRzut++;
+        if (Integer.parseInt(numberOfThrows) < 1) {
+            if (additionalNumberSumInteger < 1) {
+                int liczbaRzutow = Integer.parseInt(numberOfThrows);
+                int ileRzut = 1;
+
+                if (additionalNumberSumInteger >= 0) {
+                    System.out.println("Rzuciłem kostką: " + numberOfThrows + " razy.");
+                    int[] tableOfThrows = new int[liczbaRzutow];
+                    for (int i = 0; i < tableOfThrows.length; i++) {
+                        tableOfThrows[i] = ThreadLocalRandom.current().nextInt(1, typeOfCube);
+                        ;
+                        System.out.println("Rzut nr: " + ileRzut + ": " + tableOfThrows[i]);
+                        ileRzut++;
+                    }
+                    System.out.println("oraz dodałem: " + additionalNumber);
+                    System.out.println();
+                    result = ((IntStream.of(tableOfThrows).sum()) + additionalNumberSumInteger);
+                    System.out.println("Suma wylosowanych liczb to: " + result);
+                } else if (additionalNumberSumInteger < 0) {
+                    System.out.println("Rzuciłem kostką: " + numberOfThrows + " razy.");
+                    int[] tableOfThrows = new int[liczbaRzutow];
+                    for (int i = 0; i < tableOfThrows.length; i++) {
+                        tableOfThrows[i] = ThreadLocalRandom.current().nextInt(1, typeOfCube);
+                        System.out.println("Rzut nr: " + ileRzut + ": " + tableOfThrows[i]);
+                        ileRzut++;
+                    }
+                    System.out.println("oraz dodałem: " + additionalNumber);
+                    System.out.println();
+                    result = (IntStream.of(tableOfThrows).sum() + additionalNumberSumInteger);
+                    System.out.println("Suma wylosowanych liczb to: " + result);
+
                 }
-                System.out.println("oraz dodałem: " + additionalNumber);
-                System.out.println();
-                result = ((IntStream.of(tableOfThrows).sum()) + additionalNumberSumInteger);
-                System.out.println("Suma wylosowanych liczb to: " + result);
-            } else if (additionalNumberSumInteger < 0) {
-                System.out.println("Rzuciłem kostką: " + numberOfThrows + " razy.");
-                int[] tableOfThrows = new int[liczbaRzutow];
-                for (int i = 0; i < tableOfThrows.length; i++) {
-                    tableOfThrows[i] = ThreadLocalRandom.current().nextInt(1, typeOfCube);
-                    ;
-                    System.out.println("Rzut nr: " + ileRzut + ": " + tableOfThrows[i]);
-                    ileRzut++;
-                }
-                System.out.println("oraz dodałem: " + additionalNumber);
-                System.out.println();
-                result = (IntStream.of(tableOfThrows).sum() + additionalNumberSumInteger);
-                System.out.println("Suma wylosowanych liczb to: " + result);
-
             }
-
         }
     }
 }
+
 

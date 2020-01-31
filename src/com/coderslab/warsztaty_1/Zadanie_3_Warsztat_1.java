@@ -1,3 +1,5 @@
+package com.coderslab.warsztaty_1;
+
 import java.util.Scanner;
 
 public class Zadanie_3_Warsztat_1 {
@@ -32,6 +34,7 @@ public class Zadanie_3_Warsztat_1 {
             } else {
                 System.out.println("Nie oszukuj!!!");
             }
+
         }
 
     }

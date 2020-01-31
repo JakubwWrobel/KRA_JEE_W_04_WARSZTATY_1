@@ -1,3 +1,5 @@
+package com.coderslab.warsztaty_1;
+
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -5,15 +7,6 @@ import java.util.Scanner;
 public class Zadanie_2_Warsztat_1 {
 
     public static void main(String[] args) {
-
-        Scanner scanner = new Scanner(System.in);
-        int l1 = 0;
-        int l2 = 0;
-        int l3 = 0;
-        int l4 = 0;
-        int l5 = 0;
-        int l6 = 0;
-
         int[] numbers = new int[6];
         System.out.println("Podaj numer 1");
         numbers[0] = checking(numbers);
@@ -29,9 +22,6 @@ public class Zadanie_2_Warsztat_1 {
         numbers[5] = checking(numbers);
 
         Arrays.sort(numbers);
-
-
-
         haveYouWon(lottoMachine(), numbers);
     }
 
@@ -71,6 +61,7 @@ public class Zadanie_2_Warsztat_1 {
             return result;
 
         }
+        scanner.close();
         return -1;
     }
 
@@ -109,17 +100,23 @@ public class Zadanie_2_Warsztat_1 {
         }
         System.out.println();
 
-        if (winNumber == 3) {
-            System.out.println("Bravo, trafiłeś trójkę");
-        } else if (winNumber == 4) {
-            System.out.println("Bravo, trafiłeś czwórkę");
-        } else if (winNumber == 5) {
-            System.out.println("Bravo, trafiłeś piątkę");
-        } else if (winNumber == 6) {
-            System.out.println("Bravo, trafiłeś szóstkę");
-        } else {
-            System.out.println("Przykro mi, tym razem nic nie wygrałeś");
+
+        switch (winNumber){
+            case 3:
+                System.out.println("Bravo, trafiłeś trójkę");
+                break;
+            case 4:
+                System.out.println("Bravo, trafiłeś czwórkę");
+                break;
+            case 5:
+                System.out.println("Bravo, trafiłeś piątkę");
+                break;
+            case 6:
+                System.out.println("Bravo, trafiłeś szóstkę");
+                break;
+            default:
+                System.out.println("Przykro mi, tym razem nic nie wygrałeś");
+                break;
         }
     }
-
 }

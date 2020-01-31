@@ -1,4 +1,4 @@
-package Warsztaty_1.src;
+package com.coderslab.warsztaty_1;
 
 
 import org.jsoup.Connection;
@@ -89,7 +89,6 @@ public class Zadanie_5_Warsztat_1 {
         } catch (IOException e) {
             System.out.println("IOException");
         }
-
     }
 
     public static String[] isForbidden(String[] str) {
